@@ -3,12 +3,10 @@ package my.mandapanda;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Locale;
 import java.util.Objects;
 
 
 public class Main {
-//    static char [] alph = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     public static void main(String[] args) {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader in = new BufferedReader(isr);
@@ -37,7 +35,7 @@ public class Main {
                 e.printStackTrace();
             }
         }
-        System.out.print("Enter the shift amount(0-26): ");
+        System.out.print("Enter the shift amount(0-25): ");
         int shift = 0;
         int count = 0;
         try {
@@ -47,15 +45,15 @@ public class Main {
         }
         String encrypt = "";
         if (Objects.equals(status, "Encrypted")){
-            if (shift > 26) {
-                System.out.print("Cannot shift by more than 26 characters.");
+            if (shift > 25) {
+                System.out.print("Cannot shift by more than 25 characters.");
             } else {
 
                 System.out.print("Coded: " + encryptedText(code, shift, count));
             }
         }else if(Objects.equals(status, "Decrypted")){
-            if(shift > 26){
-                System.out.print("Cannot shift by more than 26 characters.");
+            if(shift > 25){
+                System.out.print("Cannot shift by more than 25 characters.");
             }else{
 
                 System.out.print("Decoded: " + decryptedText(code, shift, count));
@@ -78,7 +76,7 @@ public class Main {
                 count++;
             }
         }else{
-            encrypt = "A shift of 0 is not secure.";
+            encrypt = "A shift of 0 or 26 is not secure.";
         }
         return encrypt;
     }
@@ -96,7 +94,7 @@ public class Main {
                 count++;
             }
         }else{
-            decrypt = "You are dumb!";
+            decrypt = "A shift of 0 or 26 is not secure.";
         }
         return decrypt;
     }
